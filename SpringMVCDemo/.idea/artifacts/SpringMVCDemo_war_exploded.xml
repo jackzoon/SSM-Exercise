@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SpringMVCDemo:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpringMVCDemo_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="SpringMVCDemo/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SpringMVCDemo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-beans/4.3.8.RELEASE/spring-beans-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-context/4.3.8.RELEASE/spring-context-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-expression/4.3.8.RELEASE/spring-expression-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-web/4.3.8.RELEASE/spring-web-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/org/springframework/spring-webmvc/4.3.8.RELEASE/spring-webmvc-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/javax/servlet/jstl/1.2/jstl-1.2.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/com/alibaba/fastjson/1.1.41/fastjson-1.1.41.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar" />
+          <element id="file-copy" path="F:/JAVATools/MvnRepo/commons-io/commons-io/2.4/commons-io-2.4.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
