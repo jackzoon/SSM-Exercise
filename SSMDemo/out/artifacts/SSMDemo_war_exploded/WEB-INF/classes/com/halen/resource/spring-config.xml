@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+
+    <!--开启切面-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!--打开注解-->
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.halen"/>
+
+    <!--引用JDBC配置文件-->
+    <context:property-placeholder location="classpath:com/halen/resource/jdbc.properties"/>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>  <!--引用数据源-->
+        <property name="mapperLocations" value="classpath:com/halen/dao/**.xml"/> <!--配置Mapper.xml的位置-->
+    </bean>
+
+    <!--Mapper扫描配置-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.halen.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--配置注解驱动事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--数据源设置-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="url" value="${jdbc_url}"/>
+        <property name="username" value="${jdbc_username}"/>
+        <property name="password" value="${jdbc_password}"/>
+        <!--初始化连接大小-->
+        <property name="initialSize" value="5"/>
+        <!--连接池最大使用连接数量-->
+        <property name="maxActive" value="20"/>
+        <!--连接池最小空闲-->
+        <property name="minIdle" value="0"/>
+        <!--获取连接最大等等待时间-->
+        <property name="maxWait" value="60000"/>
+
+        <property name="validationQuery" value="${validationQuery}"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="testWhileIdle" value="true"/>
+        <!--配置间隔多久才进行一次检测，检测需要挂你把的空闲连接，单位是毫秒-->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!--配置一个连接在池中最小生存的时间，单位是毫秒-->
+        <property name="minEvictableIdleTimeMillis" value="25200000"/>
+        <!--打开removeAbandoed功能-->
+        <property name="removeAbandoned" value="true"/>
+        <!--1800秒，也就是30分钟-->
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <!--关闭abanded连接时输出错误日志-->
+        <property name="logAbandoned" value="true"/>
+        <!--监控数据库-->
+       <!-- <property name="filters" value="stat"/>-->
+        <property name="filters" value="mergeStat"/>
+    </bean>
+
+</beans>
